@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My SaaS Landing Page</title>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <style>
+      body { background-color: red; }
+    </style>
+</head>
+<body>
+
+    <div id="content">
+<nav>
+        <a href="/" hx-get="/" hx-target="#content" hx-push-url="true">Home</a>
+        <a href="/features" hx-get="/features" hx-target="#content" hx-push-url="true">Features</a>
+        <a href="/contact" hx-get="/contact" hx-target="#content" hx-push-url="true">Contact</a>
+    </nav>
+
+        {{ if eq .Section "home" }}
+            <section>
+                <h1>Welcome to Our SaaS Product</h1>
+                <p>This is the homepage of our amazing SaaS product. It helps you manage your work efficiently.</p>
+                <button hx-get="/features" hx-target="#content" hx-push-url="true">Learn More</button>
+            </section>
+        {{ else if eq .Section "features" }}
+            <section>
+                <h2>Features</h2>
+                <ul>
+                    <li>Feature One: Helps you organize tasks</li>
+                    <li>Feature Two: Automates workflows</li>
+                    <li>Feature Three: Real-time collaboration</li>
+                </ul>
+                <button hx-get="/contact" hx-target="#content" hx-push-url="true">Contact Us</button>
+            </section>
+        {{ else if eq .Section "contact" }}
+            <section>
+                <h2>Contact Us</h2>
+                <p>Feel free to reach out for more information or any questions you may have.</p>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        {{ end }}
+    </div>
+</body>
+</html>
+
